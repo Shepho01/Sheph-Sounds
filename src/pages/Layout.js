@@ -1,0 +1,51 @@
+import { Outlet, Link } from "react-router-dom";
+import { useState } from "react";
+
+import Home from './Home';
+import SoundBoard from "./SoundBoard";
+
+const Layout = () => {
+  const [enterStatus, setStatus] = useState(false);
+
+  const handleContinue = () => {
+   
+    setStatus(true);
+  }
+
+  const handleBack = () => {
+  
+    setStatus(false);
+  }
+
+  return (
+    <>    
+    
+      {enterStatus ?
+
+        <div>
+          <br></br>
+          <br></br>
+          {enterStatus ? <SoundBoard/>: <></>}
+          <button onClick={handleBack} className="btn btn-warning btn-sm">
+            <Link  to="/">Back</Link>
+          </button>
+          <br></br>
+          <br></br>
+        </div>
+
+          :
+
+        <div>
+          {enterStatus ? <></>: <Home/>}
+          <button className="btn btn-warning btn-sm">
+            <Link onClick={handleContinue} to="/sound-board">ENTER</Link>
+          </button>
+          
+        </div>
+        }
+      
+    </>
+  )
+};
+
+export default Layout;
