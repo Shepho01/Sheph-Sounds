@@ -1,40 +1,175 @@
 
 /* style.css*/
 body { 
-  display: flex; 
+  display: grid; 
   align-items: center; 
   justify-content: center; 
   min-height: 45vh; 
   flex-direction: column; 
   margin: 0; 
-
+  color: aliceblue;
+  background-color:#515151;
+  color: white;
 }  
 
-.main { 
-  background-color: #ff0000; 
-  border-radius: 15px; 
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
-  padding: 10px 20px; 
-  transition: transform 0.2s; 
-  width: 500px; 
-  height: 400px; 
-  text-align: center; 
+.title {
+  display: auto; 
+  align-items: center; 
+  color: white;
 }
 
-.ass{
-  padding:10px;
+.timeRemaining{
+  color: rgb(255, 47, 47);
+}
+
+.colourModeButton1 {
+  background-color: #515151;
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 4px 4px;
 }
 
-.time {
-  font-size: 12px;
-  color: rgb(255, 255, 255);
+.colourModeButton1:hover {
+  background-color: #5b5b5b;
 }
 
-.soundIconBox {
-  position: relative;
- 
-  /* border: 2px solid #f65959; */
+.colourModeButton2 {
+  background-color: lightskyblue;
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 4px 4px;
+}
 
+.colourModeButton2:hover {
+  background-color: rgb(146, 213, 255);
+}
+
+.playButton {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  margin: 4px 4px;
+}
+
+.playButton:hover {
+  background-color: #00a8e0;
+}
+
+.stopButton {
+  background-color: rgb(255, 0, 0);
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  margin: 4px 4px;
+}
+
+.stopButton:hover {
+  background-color: rgb(244, 83, 83);
+}
+
+.editButton {
+  background-color: rgb(234, 178, 48);
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 4px 4px;
+}
+
+.editButton:hover {
+  background-color: rgb(244, 191, 69);
+}
+
+.addButton {
+  background-color: rgb(0, 211, 84);
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 4px 4px;
+}
+
+.addButton:hover {
+  background-color: rgb(0, 235, 94);
+}
+
+.deleteButton {
+  background-color: rgb(255, 76, 6);
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 4px 4px;
+}
+
+.deleteButton:hover {
+  background-color: rgb(255, 98, 36);
+}
+
+.enterBackButton {
+  background-color: rgb(249, 234, 31);
+  border: none;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 4px 4px;
+}
+
+.enterBackButton:hover {
+  background-color: rgb(228, 219, 85);
+}
+
+.textBox {
+  background-color: #ffffff;
+  font-size: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 50px;
+  grid-row-gap: 10px;
+  padding: 5px;
+}
+
+/* Designing all grid-items */
+.grid-item {
+  font-size: 18px;
 }

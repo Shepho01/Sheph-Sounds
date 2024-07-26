@@ -12,7 +12,7 @@ class SoundIconsB extends Component {
     render() { 
       
         return (<>
-            <br></br>
+           
             {this.props.sounds.map(currentSound => (
              
              <SoundIcon
@@ -25,12 +25,12 @@ class SoundIconsB extends Component {
                     playing = {currentSound.playing}
                     onDelete = {this.props.onDelete}
                     editStatus = {this.props.editStatus} 
-                    
-                    playerStop = {this.props.playerStop}
+                    onChangeName = {this.props.onChangeName}
+
                     playerSwitch = {this.props.playerSwitch}
-                    anySoundPlaying = {this.props.anySoundPlaying}
-                    playSituation = {this.props.playSituation}
                     playedSounds = {this.props.playedSounds}
+
+                    className="grid-item"
                     />
 
                 

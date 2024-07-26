@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import '../App.css'
 
 class EditButton extends Component {
-    state = { 
-        editStatus: this.props.editStatus,
-        onEdit: this.props.onEdit 
-    }
+    state = {}
     
     
     render() { 
-        return (<button onClick={this.state.onEdit} className="btn btn-warning btn-sm" >EDIT</button>);
+        return (<>
+        
+            <button onClick={this.props.onEdit} className="editButton" >EDIT</button>
+            
+        </>);
     }
 }
  

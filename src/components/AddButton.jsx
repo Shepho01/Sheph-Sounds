@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "../App.css"
 
 function AppButton(props) {
 
@@ -9,7 +10,7 @@ function AppButton(props) {
 
     return ( <>
     
-        <button className="btn btn-info btn-sm" onClick={handleAdd}>ADD</button>
+        <button className="addButton" onClick={handleAdd}>ADD</button>
 
     </> );
 }

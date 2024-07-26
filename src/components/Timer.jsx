@@ -1,15 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../App.css';
 
+function getRandomColor() {
+  const letters = ["#00b398", "red", "#dae505", "pink", "orange", "lime-green"];
+
+  const min = 0;
+  const max = letters.length - 1;
+
+  let ass = Math.floor(Math.random() * (max - min + 1)) + min; 
+
+  let color = letters[ass]
+
+  return color;
+
+}
+
 
 function Timer(props) {
+
 
   const totalTime = props.time
   const audioRef = useRef(null);
 
   const [remainingTime, setRemainingTime] = useState(props.time);
   const [playStatus, setPlayStatus] = useState(false);  
-  
+
+  const [color, setColor] = useState(getRandomColor());
+
+  useEffect(() => {
+    setColor(getRandomColor());
+  }, []);
 
   useEffect(() => {
     let intervalId;
@@ -17,21 +37,15 @@ function Timer(props) {
     handleVerify()
 
     if (playStatus && remainingTime > 0) {
-      
       intervalId = setInterval(() => {
         setRemainingTime(prevRemainingTime => prevRemainingTime - 1);
-        
       }, 1000);
-      
     }
-    
-    
     
     else if(playStatus === false && remainingTime > 0) {
       handleStop();
     }
-    
-    
+        
     else if (remainingTime === 0) {
 
       handleStop();
@@ -43,24 +57,14 @@ function Timer(props) {
   }, [playStatus, remainingTime, props.playing]);
 
   const handlePlay = () => {
-
-    
     audioRef.current.play();   
     setPlayStatus(true);
     props.playerSwitch(props.id, true)
-    
-    if(playStatus === true && props.playing === false) {
-
-    }
-
   }
   
   const handleStop = () => {
-    
-    
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
-
     setPlayStatus(false);
     setRemainingTime(totalTime);
     props.playerSwitch(props.id, playStatus)
@@ -68,25 +72,21 @@ function Timer(props) {
   }
 
   const handleVerify = () => {
-
-    
-    
     if(playStatus === true && props.playing === false) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setRemainingTime(props.time)
     }
-
-    
-
   };
+
 
 
   return (<>
 
     <audio ref={audioRef} src={props.ringer}></audio>
-    { props.playing ? <button onClick={handleStop} className="btn btn-info btn-sm">STOP</button> : <button onClick={handlePlay} className="btn btn-success btn-sm">PLAY</button> }
-    <span> Time: {remainingTime}s </span>
+    { props.playing ? <button onClick={handleStop} className="stopButton">STOP</button> : <button style={{backgroundColor: color}} onClick={handlePlay} className="playButton">PLAY</button> }
+  
+    <span className='timeRemaining'> ({remainingTime}s) </span>
 
   </>);
 }

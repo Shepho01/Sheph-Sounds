@@ -1,8 +1,9 @@
 import React, { Component, useEffect } from 'react';
+import "../App.css"
 
 function DeleteButton(props) {
 
-    return ( <button onClick={ () => props.onDelete(props.currentSound.id) } className="btn btn-danger btn-sm">DELETE</button>  );
+    return ( <button onClick={ () => props.onDelete(props.id) } className="deleteButton">DELETE</button>  );
 }
 
 export default DeleteButton;

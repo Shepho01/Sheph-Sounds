@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import EditButton from '../components/EditButton.jsx';
 import SoundIconsA from '../components/SoundIconsA.jsx';
 import SoundIconsB from '../components/SoundIconsB.jsx';
-import ReactDOM from "react-router-dom";
 import AddButton from '../components/AddButton.jsx';
+import DarkModeButton from '../components/DarkModeButton.jsx';
 
 import ringer1 from "../components/audio files/Ass1.mp3";
 import ringer2 from "../components/audio files/Ass2.mp3";
@@ -24,6 +24,13 @@ import ringer15 from"../components/audio files/MileyCyrusJoeRoganMeme.mp3";
 import ringer16 from"../components/audio files/JoeRoganGorilla.mp3";
 import ringer17 from"../components/audio files/Milk.mp3";
 
+import ringer18 from"../components/audio files/1thing.mp3";
+import ringer19 from"../components/audio files/bluecheese.mp3";
+import ringer20 from"../components/audio files/checkyoself.mp3";
+import ringer21 from"../components/audio files/haram.mp3";
+import ringer22 from"../components/audio files/high.mp3";
+import ringer23 from"../components/audio files/tongue.mp3";
+
 import "../App.css"
 
 class SoundBoard extends Component {
@@ -42,19 +49,35 @@ class SoundBoard extends Component {
       {id: 10, soundName: "R2D2", soundTime: 2, soundRinger: ringer10, playing: false},
       {id: 11, soundName: "Wilhelm Scream", soundTime: 2, soundRinger: ringer11, playing: false},
       {id: 12, soundName: "Big Boy", soundTime: 4, soundRinger: ringer12, playing: false},
-      {id: 13, soundName: "Ryan Garcia 1 ", soundTime: 2, soundRinger: ringer13, playing: false},
-      {id: 14, soundName: "Ryan Garcia 2 ", soundTime: 6, soundRinger: ringer14, playing: false},    
-      {id: 15, soundName: "Miley Cyrus Joe Rogan Meme ", soundTime: 9, soundRinger: ringer15, playing: false},
-      {id: 16, soundName: "Joe Rogan Gorilla ", soundTime: 9, soundRinger: ringer16, playing: false},
-      {id: 17, soundName: "Milk ", soundTime: 7, soundRinger: ringer17, playing: false}
+      {id: 13, soundName: "Ryan Garcia 1", soundTime: 2, soundRinger: ringer13, playing: false},
+      {id: 14, soundName: "Ryan Garcia 2", soundTime: 6, soundRinger: ringer14, playing: false},    
+      {id: 15, soundName: "Miley Cyrus Joe Rogan Meme", soundTime: 9, soundRinger: ringer15, playing: false},
+      {id: 16, soundName: "Joe Rogan Gorilla", soundTime: 9, soundRinger: ringer16, playing: false},
+      {id: 17, soundName: "Milk", soundTime: 7, soundRinger: ringer17, playing: false},
+      {id: 18, soundName: "1 thing", soundTime: 4, soundRinger: ringer18, playing: false},
+      {id: 19, soundName: "blue cheese", soundTime: 3, soundRinger: ringer19, playing: false},
+      {id: 20, soundName: "check yo self", soundTime: 5, soundRinger: ringer20, playing: false},    
+      {id: 21, soundName: "haram", soundTime: 2, soundRinger: ringer21, playing: false},
+      {id: 22, soundName: "high", soundTime: 7, soundRinger: ringer22, playing: false},
+      {id: 23, soundName: "tongue", soundTime: 6, soundRinger: ringer23, playing: false}
     ],
 
     playedSounds: [],
 
     editStatus : false,
 
-    anySoundPlaying : false
+    anySoundPlaying : false,
+    
+    darkModeStatus: false,
+
+    colour: "#515151"
 } 
+
+  componentDidMount() {
+
+    this.handleColourMode()
+
+  }
 
   handleEdit = () => {  
 
@@ -67,37 +90,54 @@ class SoundBoard extends Component {
     }
 
   } 
-  
+
+  handleColourMode = () => {
+    if(this.state.darkModeStatus === true) {
+      this.state.darkModeStatus = false;
+      this.setState({colour: "#515151"})
+      this.state.colour = "#515151"
+    }
+
+    else if(this.state.darkModeStatus === false) {
+      this.state.darkModeStatus = true;
+      this.setState({colour: "lightskyblue"})
+      this.state.colour = "lightskyblue"
+    }
+    
+    document.body.style.backgroundColor = this.state.colour
+
+  }
+
+  handleChangeName = (soundID, newName) => {
+    let ass = this.state.sounds.find((sound) => sound.id === soundID);
+    let index = this.state.sounds.indexOf(ass);
+    ass.soundName = newName;
+    this.state.sounds[index] = ass;
+  }
+
   handleDelete = (soundID) => {
     const soundIcons = this.state.sounds.filter(a => a.id !== soundID)
     this.setState({sounds: soundIcons})
   }
-
   
+
   handleNext = () => {
     console.log("Next");
   }
 
-  handlePlayerStop = () => {
-
-  }
 
   handlePlayerSwitch = (soundID, playStatus) => {    
 
     let ass = this.state.sounds.find((sound) => sound.id === soundID);
-    
     let index = this.state.sounds.indexOf(ass)
-
     this.state.sounds[index] = ass;
-    
     const replacementSounds = this.state.sounds;
-
+    
     if(this.state.sounds[index].playing === false && playStatus === true) {
       this.state.sounds[index].playing = true;
       this.setState({anySoundPlaying: true});
       this.state.anySoundPlaying = true;
     }
-
 
     this.state.sounds = replacementSounds;
     this.setState({sounds: replacementSounds});
@@ -113,24 +153,17 @@ class SoundBoard extends Component {
         this.state.playedSounds.shift(); 
       }
       
-      
     }
 
-    
     if(this.state.sounds[index].playing === false) {
-      
       this.state.playedSounds.shift();
-      
     }
     
     if(this.state.playedSounds.length > 0) {
       this.setState({anySoundPlaying: true}); 
       this.state.anySoundPlaying = true;
-
       this.state.playedSounds[0].playing = true;
-
     }
-    
 
     else if(this.state.playedSounds.length === 0) {
       this.setState({anySoundPlaying: false});      
@@ -139,83 +172,49 @@ class SoundBoard extends Component {
 
   }
 
-  /*handlePlaySituation = (soundID, playing) => {    
-      let ass = this.state.sounds.find((sound) => sound.id === soundID);
-
-      if(playing === false) {
-        ass.playing = true;
-      }
-      
-
-      let index = this.state.sounds.indexOf(ass)
-
-      this.state.sounds[index] = ass;
-
-      const replacementSounds = this.state.sounds;
-
-      this.state.sounds = replacementSounds;
-      this.setState({sounds: replacementSounds});
-
-      if(ass.playing === true) {
-
-        this.state.playedSounds.push(ass);
-        this.setState({anySoundPlaying: true});
-        let playedSoundsLength = this.state.playedSounds.length;
-
-        if(playedSoundsLength > 1) {
-          this.state.playedSounds[0].playing = false;
-          this.state.playedSounds.shift(); 
-        }
-
-        if(this.state.playedSounds.length === 0) {
-          this.setState({anySoundPlaying: false});
-          
-        }
-
-      }
-
-
-      if(this.state.playedSounds.length === 0) {
-        this.setState({anySoundPlaying: false});      
-        
-      }
-
-      else if(ass.playing == false) {
-        this.state.playedSounds.shift();
-        
-      }
-
-
-
-    }*/
 
   render() { 
 
     return (<>
 
-      <h1>Sheph-Sounds </h1>
-      {/* <br></br>
+      <h1>Sheph-Sounds</h1>
       
-      <button onClick={this.handleCheck}>CHECK</button> */}
-      {/* <h2>{this.state.anySoundPlaying ? "Sound playing" : "Sound Not playing"}</h2> */}
-
       <br></br>
-      <div className='ass'>
-        <EditButton onEdit={this.handleEdit} editStatus = {this.state.editStatus}/>
+      
+      
+      <EditButton onEdit={this.handleEdit}/>
+      {this.state.editStatus ? <AddButton/> : <></>}      
+      <DarkModeButton colour={this.state.colour} colourModeSwitch = {this.handleColourMode} darkModeStatus = {this.state.darkModeStatus}/>
+      
 
-      </div>
+      <div className='grid-container'>
+        {this.state.editStatus ? 
+        
+          <SoundIconsA 
+            sounds = {this.state.sounds} 
+            editStatus = {this.state.editStatus} 
+            playedSounds = {this.state.playedSounds} 
+            playerSwitch = {this.handlePlayerSwitch} 
+            onEdit = {this.handleEdit} 
+            onDelete = {this.handleDelete}
+            onChangeName = {this.handleChangeName}
+          />
 
-      {this.state.editStatus ? <AddButton/> : <></>}   
-      
-      
-      <div>{this.state.editStatus ? 
+          :
+
+          <SoundIconsB 
+            sounds = {this.state.sounds} 
+            editStatus = {this.state.editStatus} 
+            playedSounds = {this.state.playedSounds} 
+            playerSwitch = {this.handlePlayerSwitch} 
+            onEdit = {this.handleEdit} 
+            onEditName = {this.handleChangeName}
+            onDelete = {this.handleDelete}
+            onChangeName = {this.handleChangeName}
+          />
+        }
         
-        <SoundIconsA sounds = {this.state.sounds} /* playSituation = {this.handlePlaySituation} */ playerSwitch = {this.handlePlayerSwitch} playedSounds = {this.state.playedSounds} playerStop = {this.handlePlayerStop} onEdit = {this.handleEdit} anySoundPlaying = {this.state.anySoundPlaying} editStatus = {this.state.editStatus} onDelete = {this.handleDelete}/> 
-        : 
-        <SoundIconsB sounds = {this.state.sounds} /* playSituation = {this.handlePlaySituation} */ playerSwitch = {this.handlePlayerSwitch} playedSounds = {this.state.playedSounds} playerStop = {this.handlePlayerStop} onEdit = {this.handleEdit} anySoundPlaying = {this.state.anySoundPlaying} editStatus = {this.state.editStatus} onDelete = {this.handleDelete}/>}
-        
-      </div>
-      
+      </div>     
      
     </>);
   }

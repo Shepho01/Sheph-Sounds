@@ -2,29 +2,27 @@ import React, { Component } from 'react';
 import Timer from './Timer';
 import '../App.css';
 import DeleteButton from './DeleteButton';
+import ChangeName from './ChangeName';
 
 
 class SoundIcon extends Component {
 
+
   render() { 
     return (
       
-      <div className='soundIconBox'>
+      <div>
 
-        <p className='table'>
-          <span>{this.props.soundName}</span>
+        <h6 className='grid-item'>
           
-          <Timer id = {this.props.id} playing = {this.props.playing} playedSounds = {this.props.playedSounds} playerSwitch = {this.props.playerSwitch} playerStop = {this.props.playerStop} anySoundPlaying = {this.props.anySoundPlaying} time = {this.props.soundTime}  name = {this.props.soundName} ringer = {this.props.soundRinger} />
+          <Timer id = {this.props.id} soundName = {this.props.soundName} playing = {this.props.playing} playedSounds = {this.props.playedSounds} playerSwitch = {this.props.playerSwitch} playerStop = {this.props.playerStop} time = {this.props.soundTime} editStatus = {this.props.edit}  name = {this.props.soundName} ringer = {this.props.soundRinger} />
 
-          {this.props.editStatus ? <DeleteButton currentSound = {this.props.currentSound} editStatus = {this.props.editStatus} onDelete = {this.props.onDelete}></DeleteButton> : <></>}
-          
-        </p>
+          {this.props.editStatus ? <DeleteButton id = {this.props.id} editStatus = {this.props.editStatus} onDelete = {this.props.onDelete}></DeleteButton> : <></>}
 
-        {/* <button onClick={ () => this.props.playSituation(this.props.id, this.props.playing)}>Playing</button> */} 
+          {this.props.editStatus ? <ChangeName id = {this.props.id} soundName = {this.props.soundName} onChangeName = {this.props.onChangeName}/> : <span className=''>{this.props.soundName}</span>}
 
-        {/* <span>{this.props.playing ? "Playing" : "Not Playing"}</span>
- */}
-      
+        </h6>
+
         <br></br>
       </div>
     );
