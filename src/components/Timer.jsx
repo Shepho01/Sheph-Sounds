@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../App.css';
 
 function getRandomColor() {
-  const letters = ["#00b398", "red", "#dae505", "pink", "orange", "lime-green"];
+  const letters = ["#ff5717", "#dfd736", "#f12e67", "#169bf4", "#3cc75c", "#ba5ae5"];
 
   const min = 0;
   const max = letters.length - 1;

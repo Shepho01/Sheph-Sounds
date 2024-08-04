@@ -100,8 +100,8 @@ class SoundBoard extends Component {
 
     else if(this.state.darkModeStatus === false) {
       this.state.darkModeStatus = true;
-      this.setState({colour: "lightskyblue"})
-      this.state.colour = "lightskyblue"
+      this.setState({colour: "#8dd5e1"})
+      this.state.colour = "#8dd5e1"
     }
     
     document.body.style.backgroundColor = this.state.colour
@@ -177,7 +177,7 @@ class SoundBoard extends Component {
 
     return (<>
 
-      <h1>Sheph-Sounds</h1>
+      <h1>SHEPH-SOUNDS</h1>
       
       <br></br>
       

@@ -1,5 +1,5 @@
 const Home = () => {
-    return <h1>Welcome to Sheph-Sounds</h1>;
+    return <h1>Welcome to SHEPH-SOUNDS</h1>;
   };
   
   export default Home;
