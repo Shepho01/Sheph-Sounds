@@ -25,6 +25,7 @@ import "../App.css"
 class SoundBoard extends Component {
  
   state = { 
+
     sounds: [
       {id: 3, soundName: "Lego Batman Meme", soundTime: 12, soundRinger: ringer3, playing: false},
       {id: 4, soundName: "Fanta Light Brev", soundTime: 11, soundRinger: ringer4, playing: false},
